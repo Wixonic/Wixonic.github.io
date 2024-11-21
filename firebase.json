@@ -160,16 +160,15 @@
 					"destination": "https://wixonic.fr",
 					"type": 301
 				}
-			],
-			"headers": [
+			]
+		},
+		{
+			"target": "functions",
+			"redirects": [
 				{
-					"source": "**",
-					"headers": [
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						}
-					]
+					"regex": "/(?P<params>.*)",
+					"destination": "https://httpserver-qrgkps4rnq-ew.a.run.app/:params",
+					"type": 301
 				}
 			]
 		}
