@@ -16,11 +16,9 @@ server.use(cookieParser());
 server.use(cors({
 	credentials: true,
 	origin: (origin, callback) => {
-		console.log(`Request incomming from ${origin}`);
-
+		console.log(origin);
 		if (allowedOrigins.includes(origin)) return callback(null, true);
-
-		return callback(new Error("Origin not allowed"));
+		return callback(new Error(`Origin not allowed: ${origin}`));
 	},
 	optionsSuccessStatus: 200
 }));
@@ -73,7 +71,7 @@ server.get("/rich/link", async (req, res) => {
 
 	const getImageData = (url, host) => new Promise((resolve, reject) => {
 		// Avoiding unnecessary calls to production by replacing it with emulator
-		getWithRedirects(url.replace("https://assets.wixonic.fr", "http://localhost:2012"), host.replace("https://assets.wixonic.fr", "http://localhost:2012"))
+		getWithRedirects(url?.replace("https://assets.wixonic.fr", "http://localhost:2012"), host?.replace("https://assets.wixonic.fr", "http://localhost:2012"))
 			.then((response) => resolve(`data:${response.headers["content-type"]};base64,${response.data.toString("base64")}`))
 			.catch(reject);
 	});
