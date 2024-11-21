@@ -5,21 +5,14 @@ const express = require("express");
 const http = require("http");
 const https = require("https");
 
-const server = express();
-
 const localEnvironment = process.env.FUNCTIONS_EMULATOR === "true";
 
-const allowedOrigins = localEnvironment ? ["http://localhost:2005", "http://localhost:2010"] : ["https://wixonic.fr", "https://assets.wixonic.fr"];
+const server = express();
 
 server.use(cookieParser());
-
 server.use(cors({
 	credentials: true,
-	origin: (origin, callback) => {
-		console.log(origin);
-		if (allowedOrigins.includes(origin)) return callback(null, true);
-		return callback(new Error(`Origin not allowed: ${origin}`));
-	},
+	origin: "*",
 	optionsSuccessStatus: 200
 }));
 
@@ -70,8 +63,7 @@ server.get("/rich/link", async (req, res) => {
 	})
 
 	const getImageData = (url, host) => new Promise((resolve, reject) => {
-		// Avoiding unnecessary calls to production by replacing it with emulator
-		getWithRedirects(url?.replace("https://assets.wixonic.fr", "http://localhost:2012"), host?.replace("https://assets.wixonic.fr", "http://localhost:2012"))
+		getWithRedirects(localEnvironment ? url?.replace("https://assets.wixonic.fr", "http://localhost:2012") : url, localEnvironment ? host?.replace("https://assets.wixonic.fr", "http://localhost:2012") : host)
 			.then((response) => resolve(`data:${response.headers["content-type"]};base64,${response.data.toString("base64")}`))
 			.catch(reject);
 	});
@@ -146,7 +138,7 @@ server.get("/rich/link", async (req, res) => {
 	}
 
 	res.writeHead(200, {
-		"access-control-allow-origin": req.header("origin"),
+		"access-control-allow-origin": "*",
 		"content-type": "application/json",
 		"cache-control": "max-age=604800"
 	});
