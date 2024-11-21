@@ -4,6 +4,7 @@ const cors = require("cors");
 const express = require("express");
 const http = require("http");
 const https = require("https");
+const sharp = require("sharp");
 
 const localEnvironment = process.env.FUNCTIONS_EMULATOR === "true";
 
@@ -64,7 +65,14 @@ server.get("/rich/link", async (req, res) => {
 
 	const getImageData = (url, host) => new Promise((resolve, reject) => {
 		getWithRedirects(localEnvironment ? url?.replace("https://assets.wixonic.fr", "http://localhost:2012") : url, localEnvironment ? host?.replace("https://assets.wixonic.fr", "http://localhost:2012") : host)
-			.then((response) => resolve(`data:${response.headers["content-type"]};base64,${response.data.toString("base64")}`))
+			.then(async (response) => {
+				const buffer = Buffer.from(response.data);
+				const resizeBuffer = await sharp(buffer)
+					.resize({ width: 800, height: 800, fit: "inside" })
+					.toFormat("jpeg", { quality: 50 })
+					.toBuffer();
+				resolve(`data:image/jpeg;base64,${resizeBuffer.toString("base64")}`);
+			})
 			.catch(reject);
 	});
 
