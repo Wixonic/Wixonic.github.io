@@ -63,12 +63,12 @@ server.get("/rich/link", async (req, res) => {
 		}
 	})
 
-	const getImageData = (url, host) => new Promise((resolve, reject) => {
+	const getImageData = (url, width = 500, height = 500, host) => new Promise((resolve, reject) => {
 		getWithRedirects(localEnvironment ? url?.replace("https://assets.wixonic.fr", "http://localhost:2012") : url, localEnvironment ? host?.replace("https://assets.wixonic.fr", "http://localhost:2012") : host)
 			.then(async (response) => {
 				const buffer = Buffer.from(response.data);
 				const resizeBuffer = await sharp(buffer)
-					.resize({ width: 600, height: 600, fit: "inside" })
+					.resize({ width, height, fit: "inside" })
 					.toFormat("png")
 					.toBuffer();
 				resolve(`data:image/png;base64,${resizeBuffer.toString("base64")}`);
@@ -134,7 +134,7 @@ server.get("/rich/link", async (req, res) => {
 					}
 				}
 
-				icon = await getImageData(bestFavicon?.url, htmlUrl.origin);
+				icon = await getImageData(bestFavicon?.url, 64, 64, htmlUrl.origin);
 			} catch (e) {
 				req.warn(`Favicon finder: ${e} `);
 			}
