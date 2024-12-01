@@ -68,10 +68,10 @@ server.get("/rich/link", async (req, res) => {
 			.then(async (response) => {
 				const buffer = Buffer.from(response.data);
 				const resizeBuffer = await sharp(buffer)
-					.resize({ width: 800, height: 800, fit: "inside" })
-					.toFormat("jpeg", { quality: 50 })
+					.resize({ width: 600, height: 600, fit: "inside" })
+					.toFormat("png")
 					.toBuffer();
-				resolve(`data:image/jpeg;base64,${resizeBuffer.toString("base64")}`);
+				resolve(`data:image/png;base64,${resizeBuffer.toString("base64")}`);
 			})
 			.catch(reject);
 	});
