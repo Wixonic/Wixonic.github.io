@@ -27,7 +27,7 @@ const adminFirestore = adminFirestoreLibrary.getFirestore(adminApp);
 
 const adminFunctionsDefaultParams = adminFunctionsLibrary.runWith({
 	memory: "128MB",
-	timeoutSeconds: 30
+	timeoutSeconds: 15
 }).region("europe-west1");
 
 const clientApp = clientAppLibrary.initializeApp({
@@ -90,7 +90,7 @@ exports.deleteAccount = adminFunctionsDefaultParams.auth.user().onDelete(async (
 });
 
 exports.httpServer = require("firebase-functions/v2/https").onRequest({
-	memory: "128MB",
+	memory: "128MiB",
 	region: "europe-west1",
-	timeoutSeconds: 30
+	timeoutSeconds: 10
 }, server);
