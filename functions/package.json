@@ -1,28 +1,29 @@
 {
-  "name": "functions",
-  "description": "Cloud Functions for Firebase",
-  "scripts": {
-    "serve": "firebase emulators:start --only functions",
-    "shell": "firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
-  },
-  "engines": {
-    "node": "20"
-  },
-  "main": "index.js",
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.12",
-    "cookie-parser": "^1.4.6",
-    "express": "^4.19.2",
-    "firebase": "^10.12.2",
-    "firebase-admin": "^12.1.1",
-    "firebase-functions": "^5.0.1",
-    "sharp": "^0.33.5"
-  },
-  "devDependencies": {
-    "firebase-functions-test": "^3.3.0"
-  },
-  "private": true
+	"name": "functions",
+	"description": "Cloud Functions for Firebase",
+	"scripts": {
+		"serve": "firebase emulators:start --only functions",
+		"shell": "firebase functions:shell",
+		"start": "npm run shell",
+		"deploy": "firebase deploy --only functions",
+		"logs": "firebase functions:log"
+	},
+	"engines": {
+		"node": "20"
+	},
+	"main": "index.js",
+	"dependencies": {
+		"cheerio": "1.0.0",
+		"cookie-parser": "1.4.6",
+		"express": "4.19.2",
+		"firebase": "10.12.2",
+		"firebase-admin": "12.1.1",
+		"firebase-functions": "5.0.1",
+		"sharp": "0.33.5"
+	},
+	"devDependencies": {
+		"@types/node": "^20.17.10",
+		"firebase-functions-test": "3.3.0"
+	},
+	"private": true
 }
