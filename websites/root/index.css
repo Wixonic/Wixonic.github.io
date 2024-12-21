@@ -1,9 +1,6 @@
 @import url("/lib/main.css");
 
 body {
-	background: #FFF;
-	color: #000;
-
 	margin-top: 0;
 }
 
@@ -62,10 +59,12 @@ section img {
 	margin: auto;
 }
 
+section:first-child {
+	padding-top: var(--header-size);
+}
+
 #wixiland {
 	background: radial-gradient(circle at bottom right, #F600FF, #8B00FF);
 
 	color: #FFF;
-
-	padding-top: var(--header-size);
 }

@@ -61,10 +61,19 @@ section img {
 	margin: auto;
 }
 
-#wixiland {
+section:first-child {
+	padding-top: var(--header-size);
+}
+
+#join {
 	background: radial-gradient(circle at bottom right, #F600FF, #8B00FF);
 
 	color: #FFF;
+}
 
-	padding-top: var(--header-size);
+#wiki img {
+	max-width: min(100%, 20rem);
+	max-height: min(100%, 20rem);
+
+	margin: auto;
 }

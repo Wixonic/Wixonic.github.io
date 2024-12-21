@@ -25,13 +25,6 @@
 	-webkit-user-select: inherit;
 }
 
-@media (prefers-color-scheme: dark) {
-	* {
-		--background: #000;
-		--color: #FFF;
-	}
-}
-
 body {
 	--header-size: 3.5rem;
 
@@ -113,12 +106,14 @@ li {
 
 	background: var(--color);
 
-	border-radius: 0.2rem;
-
 	margin: 0.2rem;
-	padding: 0.4rem 0.5rem;
+	padding: 0.3rem 0.4rem;
 
 	overflow: visible;
+}
+
+.button:hover {
+	text-decoration: none !important;
 }
 
 .button::before {
@@ -133,15 +128,20 @@ li {
 
 	background-image: linear-gradient(155deg, var(--text-color) 40%, var(--color) 60%);
 	background-position: 100%;
-	background-size: 300%;
+	background-size: 350%;
 
 	border-radius: 0.4rem;
 
 	transition: background 0.3s cubic-bezier(0, 0.3, 0.7, 1);
 
-	box-sizing: border-box;
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	mask-composite: exclude;
 
-	z-index: -1;
+	padding: 0.2rem;
+
+	box-sizing: border-box;
 }
 
 .button:hover::before {
@@ -154,12 +154,7 @@ li {
 	cursor: pointer;
 }
 
-.section-link {
-	cursor: pointer;
-}
-
-.link:hover,
-.section-link:hover {
+.link:hover {
 	text-decoration: underline;
 }
 

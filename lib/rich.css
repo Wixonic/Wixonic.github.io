@@ -2,6 +2,10 @@
 	cursor: pointer;
 }
 
+.richlink:hover {
+	text-decoration: underline;
+}
+
 #richLinkHover {
 	display: grid;
 	grid-template-rows: auto 1.2rem auto;

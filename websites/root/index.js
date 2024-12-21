@@ -25,7 +25,7 @@ addEventListener("DOMContentLoaded", async () => {
 		section.append(description);
 
 		const link = await RichLink(localEnvironment ? path.local.wixiLand : path.wixiLand);
-		link.classList.add("fade", "slide");
+		link.classList.add("fade", "slide", "button");
 		link.innerHTML = "Join WixiLand";
 		description.append(link);
 
@@ -52,7 +52,7 @@ addEventListener("DOMContentLoaded", async () => {
 		section.append(description);
 
 		const link = await RichLink(new URL("/github", localEnvironment ? path.local.redirects : path.redirects));
-		link.classList.add("fade", "slide");
+		link.classList.add("fade", "slide", "button");
 		link.innerHTML = "See open-source projects";
 		description.append(link);
 

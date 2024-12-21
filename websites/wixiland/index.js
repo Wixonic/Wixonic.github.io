@@ -9,29 +9,56 @@ addEventListener("DOMContentLoaded", async () => {
 	const main = document.querySelector("main");
 
 	await (async () => {
-		const section = document.createElement("section");
-		section.classList.add("fade");
-		section.id = "wixiland";
-		main.append(section);
+		const wikiSection = document.createElement("section");
+		wikiSection.classList.add("fade");
+		wikiSection.id = "wiki";
+		main.append(wikiSection);
 
-		const title = document.createElement("h2");
-		title.classList.add("fade", "slide");
-		title.innerHTML = "WixiLand";
-		section.append(title);
+		const wikiTitle = document.createElement("h2");
+		wikiTitle.classList.add("fade", "slide");
+		wikiTitle.innerHTML = "WixiLand Wiki";
+		wikiSection.append(wikiTitle);
 
-		const description = document.createElement("p");
-		description.classList.add("fade", "slide");
-		description.innerHTML = "Land with one click in a futuristic universe and be part of a wonderful community on Discord, or anywhere. Find a place in it, or watch from afar what's happening. In either case, you are welcome.<br /><br />";
-		section.append(description);
+		const wikiDescription = document.createElement("p");
+		wikiDescription.classList.add("fade", "slide");
+		wikiDescription.innerHTML = "Lore, technical details, facts...<br />Everything you want to know about WixiLand.<br /><br />";
+		wikiSection.append(wikiDescription);
 
-		const link = await RichLink(localEnvironment ? path.local.wixiLand : path.wixiLand);
-		link.classList.add("fade", "slide");
-		link.innerHTML = "Join WixiLand";
-		description.append(link);
+		const wikiLink = await RichLink(new URL("/wiki", localEnvironment ? path.local.wixiLand : path.wixiLand));
+		wikiLink.classList.add("fade", "slide", "button");
+		wikiLink.innerHTML = "Take a look Inside";
+		wikiDescription.append(wikiLink);
 
-		const image = await loader.image(new URL("/image/hello.png", localEnvironment ? path.local.assets : path.assets));
-		image.alt = "Robot holding a sign saying hello.";
-		image.classList.add("fade", "slide");
-		section.append(image);
+		const wikiImage = await loader.image(new URL("/image/inside/logo.png", localEnvironment ? path.local.assets : path.assets));
+		wikiImage.alt = "Logo of Inside, Wixies' home.";
+		wikiImage.classList.add("fade", "slide");
+		wikiSection.append(wikiImage);
+	})();
+
+	await (async () => {
+		const joinSection = document.createElement("section");
+		joinSection.classList.add("fade");
+		joinSection.id = "join";
+		main.append(joinSection);
+
+		const joinTitle = document.createElement("h2");
+		joinTitle.classList.add("fade", "slide");
+		joinTitle.innerHTML = "WixiLand";
+		joinSection.append(joinTitle);
+
+		const joinDescription = document.createElement("p");
+		joinDescription.classList.add("fade", "slide");
+		joinDescription.innerHTML = "Land with one click in a futuristic universe and be part of a wonderful community on Discord, or anywhere. Find a place in it, or watch from afar what's happening. In either case, you are welcome.<br /><br />";
+		joinSection.append(joinDescription);
+
+		const joinLink = await RichLink(new URL("/discord", localEnvironment ? path.local.redirects : path.redirects));
+		joinLink.classList.add("fade", "slide", "button");
+		joinLink.innerHTML = "Join WixiLand's Discord community";
+		joinDescription.append(joinLink);
+
+		const helloImage = await loader.image(new URL("/image/hello.png", localEnvironment ? path.local.assets : path.assets));
+		helloImage.alt = "Robot holding a sign saying hello.";
+		helloImage.classList.add("fade", "slide");
+		joinSection.append(helloImage);
 	})();
 });
