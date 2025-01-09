@@ -1,6 +1,8 @@
 {
 	"name": "functions",
-	"description": "Cloud Functions for Firebase",
+	"displayName": "Cloud Functions",
+	"description": "Cloud Functions for my website.",
+	"author": "Wixonic <contact@wixonic.fr> (https://wixonic.fr)",
 	"scripts": {
 		"serve": "firebase emulators:start --only functions",
 		"shell": "firebase functions:shell",
