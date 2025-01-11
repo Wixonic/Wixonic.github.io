@@ -26,29 +26,20 @@ footer .links {
 	max-width: 100%;
 }
 
+footer .links .link {
+	display: block;
+
+	width: 7rem;
+
+	text-decoration: none !important;
+
+	margin: auto;
+}
+
 footer .quickLinks {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 0.25rem;
-}
-
-footer .links .link,
-footer .quickLinks .link {
-	color: #FFF;
-
-	transition: transform 0.3s cubic-bezier(0, 0.3, 0.7, 1);
-}
-
-footer .links .link:hover,
-footer .quickLinks .link:hover {
-	transform: scale(0.9);
-}
-
-footer .links .link {
-	display: block;
-
-	margin: auto;
 }
 
 footer .quickLinks .link {
@@ -58,11 +49,26 @@ footer .quickLinks .link {
 
 	width: 2.5rem;
 	height: 2.5rem;
+
+	padding: 0.5rem;
 }
 
 footer .quickLinks .link img {
 	width: 2rem;
 	height: 2rem;
+}
+
+footer .links .link .text,
+footer .quickLinks .link img {
+	color: #FFF;
+	text-align: center;
+
+	transition: transform 0.2s cubic-bezier(0, 0.3, 0.7, 1);
+}
+
+footer .links .link:hover .text,
+footer .quickLinks .link:hover img {
+	transform: scale(0.85);
 }
 
 footer .legal {

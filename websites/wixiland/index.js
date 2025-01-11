@@ -16,7 +16,7 @@ addEventListener("DOMContentLoaded", async () => {
 
 		const wikiTitle = document.createElement("h2");
 		wikiTitle.classList.add("fade", "slide");
-		wikiTitle.innerHTML = "WixiLand Wiki";
+		wikiTitle.innerHTML = "Wiki";
 		wikiSection.append(wikiTitle);
 
 		const wikiDescription = document.createElement("p");
@@ -25,11 +25,12 @@ addEventListener("DOMContentLoaded", async () => {
 		wikiSection.append(wikiDescription);
 
 		const wikiLink = await RichLink(new URL("/wiki", localEnvironment ? path.local.wixiLand : path.wixiLand));
+		wikiLink.target = "_blank";
 		wikiLink.classList.add("fade", "slide", "button");
 		wikiLink.innerHTML = "Take a look Inside";
 		wikiDescription.append(wikiLink);
 
-		const wikiImage = await loader.image(new URL("/image/inside/logo.png", localEnvironment ? path.local.assets : path.assets));
+		const wikiImage = await loader.image(new URL("/image/inside/top-view.png", localEnvironment ? path.local.assets : path.assets));
 		wikiImage.alt = "Logo of Inside, Wixies' home.";
 		wikiImage.classList.add("fade", "slide");
 		wikiSection.append(wikiImage);
@@ -43,7 +44,7 @@ addEventListener("DOMContentLoaded", async () => {
 
 		const joinTitle = document.createElement("h2");
 		joinTitle.classList.add("fade", "slide");
-		joinTitle.innerHTML = "WixiLand";
+		joinTitle.innerHTML = "Discord";
 		joinSection.append(joinTitle);
 
 		const joinDescription = document.createElement("p");
@@ -53,7 +54,7 @@ addEventListener("DOMContentLoaded", async () => {
 
 		const joinLink = await RichLink(new URL("/discord", localEnvironment ? path.local.redirects : path.redirects));
 		joinLink.classList.add("fade", "slide", "button");
-		joinLink.innerHTML = "Join WixiLand's Discord community";
+		joinLink.innerHTML = "Join WixiLand";
 		joinDescription.append(joinLink);
 
 		const helloImage = await loader.image(new URL("/image/hello.png", localEnvironment ? path.local.assets : path.assets));

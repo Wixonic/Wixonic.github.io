@@ -1,0 +1,72 @@
+@import url("/wiki/header.css");
+@import url("/wiki/sidebar.css");
+@import url("/wiki/footer.css");
+
+* {
+	font-display: block;
+	font-family: inherit;
+
+	cursor: inherit;
+	pointer-events: inherit;
+	outline: inherit;
+
+	box-sizing: border-box;
+
+	--background: #FFF;
+	--color: #000;
+
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+
+	user-select: inherit;
+	-moz-user-select: inherit;
+	-webkit-user-select: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+	* {
+		--background: #000;
+		--color: #FFF;
+	}
+}
+
+body {
+	--header-size: 3rem;
+
+	display: flex;
+	flex-direction: column;
+
+	background: var(--background);
+
+	color: var(--color);
+	font-family: "Open Sans", arial, sans-serif;
+
+	min-height: calc(100vh - var(--header-size));
+
+	margin: var(--header-size) 0 0 0;
+
+	cursor: default;
+	outline: none;
+
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+body * {
+	overflow: hidden;
+}
+
+a {
+	color: #06F;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #80D;
+}
