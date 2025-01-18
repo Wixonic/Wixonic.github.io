@@ -25,11 +25,13 @@ header .container {
 
 	height: calc(var(--header-size) - 0.3rem);
 
-	background: #8881;
+	background: #000A;
 	backdrop-filter: blur(0.9rem);
 	-webkit-backdrop-filter: blur(0.9rem);
 
-	border: 0.1rem solid #8882;
+	color: #FFF;
+
+	border: 0.1rem solid #FFF;
 	border-radius: 1.2rem;
 
 	box-shadow: 0 0 3rem #0002;

@@ -1,7 +1,3 @@
-@import url("/wiki/header.css");
-@import url("/wiki/sidebar.css");
-@import url("/wiki/footer.css");
-
 * {
 	font-display: block;
 	font-family: inherit;
@@ -35,7 +31,7 @@ body {
 	--header-size: 3rem;
 
 	display: flex;
-	flex-direction: column;
+	justify-content: center;
 
 	background: var(--background);
 
@@ -58,15 +54,25 @@ body * {
 	overflow: hidden;
 }
 
+page {
+	display: block;
+
+	max-width: 50rem;
+}
+
 a {
-	color: #06F;
 	text-decoration: none;
+	cursor: pointer;
+}
+
+a[valid="true"] {
+	color: #06F;
+}
+
+a[valid="false"] {
+	color: #B00;
 }
 
 a:hover {
 	text-decoration: underline;
-}
-
-a:visited {
-	color: #80D;
 }
