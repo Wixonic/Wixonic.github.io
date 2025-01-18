@@ -30,7 +30,7 @@ addEventListener("DOMContentLoaded", async () => {
 		wikiLink.innerHTML = "Take a look Inside";
 		wikiDescription.append(wikiLink);
 
-		const wikiImage = await loader.image(new URL("/image/inside/top-view.png", localEnvironment ? path.local.assets : path.assets));
+		const wikiImage = await loader.image(new URL("/image/wixiland/top-view.png", localEnvironment ? path.local.assets : path.assets));
 		wikiImage.alt = "Logo of Inside, Wixies' home.";
 		wikiImage.classList.add("fade", "slide");
 		wikiSection.append(wikiImage);
