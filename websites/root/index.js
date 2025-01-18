@@ -26,7 +26,7 @@ addEventListener("DOMContentLoaded", async () => {
 
 		const link = await RichLink(localEnvironment ? path.local.wixiLand : path.wixiLand);
 		link.classList.add("fade", "slide", "button");
-		link.innerHTML = "Join WixiLand";
+		link.innerHTML = "Discover WixiLand";
 		description.append(link);
 
 		const image = await loader.image(new URL("/image/hello.png", localEnvironment ? path.local.assets : path.assets));

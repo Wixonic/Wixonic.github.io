@@ -24,7 +24,7 @@ section {
 
 	text-align: center;
 
-	margin-bottom: 1rem;
+	padding-top: 1rem;
 	padding-bottom: 1rem;
 }
 
@@ -69,6 +69,11 @@ section:first-child {
 	background: radial-gradient(circle at bottom right, #F600FF, #8B00FF);
 
 	color: #FFF;
+}
+
+#join .button {
+	--color: transparent;
+	--text-color: #FFF;
 }
 
 #wiki img {

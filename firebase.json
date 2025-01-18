@@ -113,7 +113,8 @@
 			"target": "wixiland",
 			"public": "./websites/wixiland",
 			"ignore": [
-				".DS_Store"
+				".DS_Store",
+				"wiki/deploy.js"
 			],
 			"rewrites": [
 				{
@@ -146,13 +147,18 @@
 					"type": 301
 				},
 				{
-					"regex": "/youtube(?:.*)",
-					"destination": "https://www.youtube.com/channel/UCnPN_SkWcIDNL-BjJGeDzQA",
+					"regex": "/patreon(?:.*)",
+					"destination": "https://patreon.com/Wixonic",
 					"type": 301
 				},
 				{
 					"regex": "/twitch(?:.*)",
 					"destination": "https://www.twitch.tv/wixonic",
+					"type": 301
+				},
+				{
+					"regex": "/youtube(?:.*)",
+					"destination": "https://www.youtube.com/channel/UCnPN_SkWcIDNL-BjJGeDzQA",
 					"type": 301
 				},
 				{
