@@ -29,8 +29,8 @@ addEventListener("DOMContentLoaded", async () => {
 		link.innerHTML = "Discover WixiLand";
 		description.append(link);
 
-		const image = await loader.image(new URL("/image/hello.png", localEnvironment ? path.local.assets : path.assets));
-		image.alt = "Robot holding a sign saying hello.";
+		const image = await loader.image(new URL("/image/discord.png", localEnvironment ? path.local.assets : path.assets));
+		image.alt = "Robot holding a sign.";
 		image.classList.add("fade", "slide");
 		section.append(image);
 	})();

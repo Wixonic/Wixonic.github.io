@@ -57,7 +57,7 @@ addEventListener("DOMContentLoaded", async () => {
 		joinLink.innerHTML = "Join WixiLand";
 		joinDescription.append(joinLink);
 
-		const helloImage = await loader.image(new URL("/image/hello.png", localEnvironment ? path.local.assets : path.assets));
+		const helloImage = await loader.image(new URL("/image/discord.png", localEnvironment ? path.local.assets : path.assets));
 		helloImage.alt = "Robot holding a sign saying hello.";
 		helloImage.classList.add("fade", "slide");
 		joinSection.append(helloImage);
