@@ -5,7 +5,7 @@ service cloud.firestore {
 		match /{allPaths=**} {
 			allow read, write: if false;
 
-			match /activity/song {
+			match /activity/{document=*} {
 				allow read: if true;
 			}
 		}
