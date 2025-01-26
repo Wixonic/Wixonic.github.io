@@ -75,20 +75,9 @@ const compileInfobox = (infobox) => {
 	return "";
 };
 
-const cleanAssets = async () => {
-	const index = fs.existsSync(indexPath) ? JSON.parse(fs.readFileSync(indexPath, "utf-8")) : { assets: [], pages: [] };
-
-	for (const asset of index.assets) fs.rmSync(path.join(config.htmlPath, "assets", asset.path), { recursive: true });
-
-	console.log(`Deleted ${index.assets.length} assets.`);
-};
-
-const cleanWiki = async () => {
-	const index = fs.existsSync(indexPath) ? JSON.parse(fs.readFileSync(indexPath, "utf-8")) : { assets: [], pages: [] };
-
-	for (const page of index.pages) fs.rmSync(path.join(config.htmlPath, page.path), { recursive: true });
-
-	console.log(`Deleted ${index.pages.length} pages.`);
+const clean = async () => {
+	if (fs.existsSync(config.htmlPath)) fs.rmSync(config.htmlPath, { recursive: true });
+	fs.mkdirSync(config.htmlPath, { recursive: true });
 };
 
 const buildIndex = async () => {
@@ -96,7 +85,6 @@ const buildIndex = async () => {
 
 	for (const file of fs.readdirSync(path.join(config.wikiPath, "wiki"))) {
 		if (!forbiddenFiles.includes(file)) {
-			console.log(file);
 			const filePath = path.join(config.wikiPath, "wiki", file);
 			const fileName = file.slice(0, -3);
 			const markdown = fs.readFileSync(filePath, "utf-8");
@@ -132,7 +120,7 @@ const buildIndex = async () => {
 
 const buildAssets = async () => {
 	for (const asset of index.assets) {
-		const folderPath = path.join(config.wikiPath, "wiki", "assets", asset.path);
+		const folderPath = path.join(config.htmlPath, "assets", asset.path);
 		fs.mkdirSync(folderPath, { recursive: true });
 		console.log(`Built asset ${asset.path}.`);
 	}
@@ -161,12 +149,9 @@ const buildWiki = async () => {
 };
 
 (async () => {
-	console.log("Cleaning assets...");
-	await cleanAssets();
-	console.log("Assets cleaned.");
-	console.log("Cleaning wiki...");
-	await cleanWiki();
-	console.log("Wiki cleaned.");
+	console.log("Cleaning...");
+	await clean();
+	console.log("Cleaned.");
 
 	if (process.env.CLEAN != "true") {
 		console.log("Building index...");
