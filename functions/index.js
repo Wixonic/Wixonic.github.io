@@ -2,7 +2,7 @@ const adminAppLibrary = require("firebase-admin/app");
 const adminAuthLibrary = require("firebase-admin/auth");
 const adminFirestoreLibrary = require("firebase-admin/firestore");
 
-const adminFunctionsLibrary = require("firebase-functions");
+const adminFunctionsLibrary = require("firebase-functions/v1");
 
 const clientAppLibrary = require("firebase/app");
 const clientAuthLibrary = require("firebase/auth");
@@ -25,7 +25,7 @@ const adminApp = adminAppLibrary.initializeApp({
 const adminAuth = adminAuthLibrary.getAuth(adminApp);
 const adminFirestore = adminFirestoreLibrary.getFirestore(adminApp);
 
-const adminFunctionsDefaultParams = adminFunctionsLibrary.runWith({
+const adminFunctionsDefaultLibrary = adminFunctionsLibrary.runWith({
 	memory: "128MB",
 	timeoutSeconds: 15
 }).region("europe-west1");
@@ -43,7 +43,7 @@ const clientAuth = clientAuthLibrary.getAuth(clientApp);
 if (localEnvironment) clientAuthLibrary.connectAuthEmulator(clientAuth, "http://localhost:2001");
 
 
-exports.createAccount = adminFunctionsDefaultParams.auth.user().onCreate(async (user, ctx) => {
+exports.createAccount = adminFunctionsDefaultLibrary.auth.user().onCreate(async (user, ctx) => {
 	const username = `user-${new Date(ctx.timestamp).getTime().toString(36)}`;
 
 	try {
@@ -75,7 +75,7 @@ exports.createAccount = adminFunctionsDefaultParams.auth.user().onCreate(async (
 	}
 });
 
-exports.deleteAccount = adminFunctionsDefaultParams.auth.user().onDelete(async (user) => {
+exports.deleteAccount = adminFunctionsDefaultLibrary.auth.user().onDelete(async (user) => {
 	try {
 		await adminFirestore.collection("users").doc(user.uid).delete();
 	} catch (e) {
@@ -90,7 +90,7 @@ exports.deleteAccount = adminFunctionsDefaultParams.auth.user().onDelete(async (
 });
 
 exports.httpServer = require("firebase-functions/v2/https").onRequest({
-	memory: "128MiB",
+	memory: "256MiB",
 	region: "europe-west1",
 	timeoutSeconds: 10
 }, server);
